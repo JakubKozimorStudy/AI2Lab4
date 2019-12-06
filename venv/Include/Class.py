@@ -1,8 +1,8 @@
-def map_task():
-    print(list(map(int,['12', '-2', '0'])))
-    print(list(map(len,['hello', 'world'])))
-    print(list(map(lambda word: word[::-1],['hello', 'world'])))
-    print(list(map(lambda r: (r, r * 2, r * 3),range(2, 6))))
-    print(list(map(lambda l: l[0]*l[1] ,zip(range(2, 5), range(3, 9, 2)))))
+def filter_task():
+    print(list(filter(lambda n : int(n) >= 0,['12', '-2', '0'])))
+    print(list(filter(lambda n : n == 'world',['hello', 'world'])))
+    print(list(filter(lambda n : n == 'Stanford',['Stanford', 'Cal', 'UCLA'])))
+    print(list(filter(lambda n : n%3 == 0 or n%5 == 0,range(20))))
 
-map_task()
+
+filter_task()
