@@ -1,41 +1,34 @@
-import operator
-from functools import reduce
+def replacing_Control_Flow(score = None):
+    return (score == 1 and "Winner") or (score == -1 and "Loser") or "Tied"
 
-def gcd(a, b):
-    """Reference implementation of finding the
-    greatest common denominator of two numbers"""
-    while b != 0:
-        a, b = b, a % b
-    return a
+print(replacing_Control_Flow())
+print(replacing_Control_Flow(1))
+print(replacing_Control_Flow(-1))
+print()
 
-def lcm(*args):
-    return reduce(lambda x, y: x * y / gcd(x, y), args)
+def dot_product(u, v):
+    return sum(list(map(lambda x: x[0] * x[1],zip(u,v))))
 
+print(dot_product([1, 3, 5], [2, 4, 6]))
+print()
 
-def fact(n):
-    return reduce(operator.mul, range(1,n+1))
+def transpose(m):
+    return tuple(zip(*m))
 
-print(lcm(3,5))
+matrix = (
+    (1, 2, 3, 4),
+    (5, 6, 7, 8),
+    (9,10,11,12)
+)
+print(transpose(matrix))
 
-print(operator.add(1, 2))
-print(operator.mul(3, 10))
-print(operator.pow(2, 3) )
-print(operator.itemgetter(1)([1, 2, 3]))
+def matmul(m1, m2):
+    return tuple(map(lambda row: tuple(dot_product(row, col) for col in transpose(m2)), m1))
 
+matrix1 = (
+    (1, 2, 3, 4),
+    (5, 6, 7, 8),
+    (9,10,11,12)
+)
 
-print(fact(3))  # => 6
-print(fact(7))  # => 5040
-
-def alpha_score(upper_letters):
-    """Computers the alphanumeric sum of letters in a string.
-    Prerequisite: upper_letters is composed entirely of capital letters.
-    """
-    return sum(map(lambda l: 1 + ord(l) - ord('A'), upper_letters))
-
-print(alpha_score('ABC'))  # => 6 = 1 ('A') + 2 ('B') + 3 ('C')
-
-def two_best(words):
-    words.sort(key=lambda word: alpha_score(filter(str.isupper, word)), reverse=True)
-    return words[:2]
-
-print(two_best(['hEllO', 'wOrLD', 'i', 'aM', 'PyThOn']))
+print(matmul(matrix,matrix1))
